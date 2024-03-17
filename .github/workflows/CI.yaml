@@ -1,9 +1,9 @@
-name: Deploy to AKS Cluster
+name: CI Pipeline
 #on: [push]
 on:
   pull_request:
     branches:
-    - master
+    - main
 
 jobs:
   build:
@@ -44,12 +44,12 @@ jobs:
         container-registry-password: ${{ secrets.ACR_PASSWORD }}
         secret-name: k8s-secret
 
-    - uses: Azure/k8s-deploy@v1
-      with:
-        manifests: |
-          manifests/deployment.yaml
-          manifests/service.yaml
-        images: |
-          cloudlifeacr.azurecr.io/k8sflask:${{ github.sha }}
-        imagepullsecrets: |
-          k8s-secret
+    # - uses: Azure/k8s-deploy@v1
+    #   with:
+    #     manifests: |
+    #       manifests/deployment.yaml
+    #       manifests/service.yaml
+    #     images: |
+    #       cloudlifeacr.azurecr.io/k8sflask:${{ github.sha }}
+    #     imagepullsecrets: |
+    #       k8s-secret
