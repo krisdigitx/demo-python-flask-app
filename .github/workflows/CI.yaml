@@ -27,7 +27,7 @@ jobs:
         password: ${{ secrets.ACR_PASSWORD }}
     
     - run: |
-        docker build . -t ddademodevappmongooseacr.azurecr.ioo/k8sflask:${{ github.sha }}
+        docker build . -t ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.sha }}
         docker push ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.sha }}
       
     # Set the target AKS cluster.
