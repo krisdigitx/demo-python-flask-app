@@ -22,24 +22,24 @@ jobs:
     
     - uses: Azure/docker-login@v1
       with:
-        login-server: cloudlifeacr.azurecr.io
+        login-server: ddademodevappmongooseacr.azurecr.io
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
     
     - run: |
-        docker build . -t cloudlifeacr.azurecr.io/k8sflask:${{ github.sha }}
-        docker push cloudlifeacr.azurecr.io/k8sflask:${{ github.sha }}
+        docker build . -t ddademodevappmongooseacr.azurecr.ioo/k8sflask:${{ github.sha }}
+        docker push ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.sha }}
       
     # Set the target AKS cluster.
     - uses: Azure/aks-set-context@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        cluster-name: aksdemocluster
-        resource-group: aksdemo
+        cluster-name: demo-devApp-aks
+        resource-group: demo-devApp-mongoose-dev-rg
         
     - uses: Azure/k8s-create-secret@v1
       with:
-        container-registry-url: cloudlifeacr.azurecr.io
+        container-registry-url: ddademodevappmongooseacr.azurecr.io
         container-registry-username: ${{ secrets.ACR_USERNAME }}
         container-registry-password: ${{ secrets.ACR_PASSWORD }}
         secret-name: k8s-secret
