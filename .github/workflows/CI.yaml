@@ -26,9 +26,9 @@ jobs:
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
     
-    - run: |
-        docker build . -t ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.sha }}
-        docker push ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.sha }}
+    - run: |sha
+        docker build . -t ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.run_number }}
+        docker push ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.run_number }}
       
     # # Set the target AKS cluster.
     # - uses: Azure/aks-set-context@v1
