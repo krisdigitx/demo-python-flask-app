@@ -29,6 +29,8 @@ jobs:
     - run: |
         docker build . -t ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.run_number }}
         docker push ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.run_number }}
+        docker tag ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.run_number }} ddademodevappmongooseacr.azurecr.io/k8sflask:latest
+        docker push ddademodevappmongooseacr.azurecr.io/k8sflask:latest
       
     # # Set the target AKS cluster.
     # - uses: Azure/aks-set-context@v1
