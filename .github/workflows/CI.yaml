@@ -26,7 +26,7 @@ jobs:
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
     
-    - run:
+    - run: |
         docker build . -t ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.run_number }}
         docker push ddademodevappmongooseacr.azurecr.io/k8sflask:${{ github.run_number }}
       
