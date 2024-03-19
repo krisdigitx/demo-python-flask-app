@@ -39,3 +39,27 @@ $ docker inspect -f '{{ .Config.Hostname }}' my-container
 ```
 
 
+### Install ArgoCD on AKS
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl get all -n argocd
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
+# Attach ACR to AKS using using acr-name
+```
+az aks update -n demo-devApp-aks -g demo-devApp-mongoose-dev-rg --attach-acr ddademodevAppmongooseacr
+```
+
+OR
+
+# Attach using acr-resource-id
+```
+az aks update -n myAKSCluster -g myResourceGroup --attach-acr <acr-resource-id>
+```
+
+
+
+
+
